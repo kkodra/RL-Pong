@@ -46,12 +46,14 @@ def stats(file_name):
     plt.plot(episodes,wins,'o')
     plt.xlabel('Number of Episodes')
     plt.ylabel('Number of Wins')
+    plt.grid()
     
     plt.figure()
     plt.plot(episodes[1:],res)
     plt.xlabel('Number of Episodes')
     plt.ylabel('Accuracy [%]')
-     
+    plt.grid()
+   
 #game's main loop    
 done = False
 clock=pygame.time.Clock()
