@@ -18,3 +18,6 @@ Simply run _pong_MC.py_. The following libraries are needed:
 1. pygame
 2. numpy
 3. matplotlib
+
+## Reference
+R. S. Sutton and A. G. Barto, "Reinforcement Learning: An Introduction," 2nd Ed., 2018.
