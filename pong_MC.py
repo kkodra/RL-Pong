@@ -13,7 +13,7 @@ pygame.init()
 env = setup();
         
 screen = pygame.display.set_mode(env.size)
-pygame.display.set_caption('RL Pong')        
+pygame.display.set_caption('Monte Carlo')        
         
 def encode(bx,by,bdir,padx,cmd):
     result = bx*2**12+by*2**8+bdir*2**6+padx*2**2+cmd
