@@ -2,6 +2,7 @@ import numpy as np
 import pygame 
 
 alpha = 0.7
+
 # Color definition for printing
 R  = '\033[1;31m' # red
 G  = '\033[1;32m' # green
@@ -33,6 +34,7 @@ pygame.display.set_caption('Q Learning')
 rect_x = int(np.random.randint(0,285)/15)*15
 rect_y = 195
 print('x ' + str(rect_x) + 'y '+ str(rect_y))
+
 #initial speed of the paddle
 rect_change_x = 0
 rect_change_y = 0
@@ -61,9 +63,9 @@ def drawrect(screen,x,y):
         x = 210    
     pygame.draw.rect(screen,GREEN,[x,y,90,15])
      
-#game's main loop    
+#Game's main loop    
 done = False
-clock=pygame.time.Clock()
+clock = pygame.time.Clock()
 
 r = np.array([-1, -100, 100])
 
@@ -73,12 +75,11 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
  
-    #  we need to pick left, right or stay randomly
+    # We need to pick left, right or stay randomly
     # We need to check if any of the three commands wins
     dirx = ball_change_x/15 
     diry = ball_change_y/15 
     print('dirx' , dirx , 'diry' , diry, 'ballx', ball_x, 'bally', ball_y, 'paddlex', rect_x)
-  #  print('ball_change_x', ball_change_x, 'ball_change_y', ball_change_y)
     if dirx == -1:
         dirx = 0
     else:
