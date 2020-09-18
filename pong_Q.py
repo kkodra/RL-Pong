@@ -125,7 +125,7 @@ while not done:
         env.rect_change_x = 0
         print(G+'***************** DO NOT MOVE *****************'+W)
         print('test1',env.Q[test1],'test2',env.Q[test2],'test3 - max',env.Q[test3])
-        env.episode = np.append(env.episode,encode(env.ball_x/15,env.all_y/15,dirval,env.rect_x/15,cmd))
+        env.episode = np.append(env.episode,encode(env.ball_x/15,env.ball_y/15,dirval,env.rect_x/15,cmd))
         
         icount += 1
         print('icount = ', icount, 'length of episode', len(env.episode))
