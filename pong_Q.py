@@ -1,5 +1,6 @@
 import numpy as np
 import pygame 
+from setup import setup
 
 alpha = 0.7
 
@@ -21,6 +22,8 @@ icount = 0
 direction = np.array([[0,1],[2,3]])
     
 BLACK = (0,0,0); WHITE = (255,255,255); GREEN = (0,255,0)
+
+env = setup();
 
 pygame.init()
 fout = open('Logfile.txt','w')
