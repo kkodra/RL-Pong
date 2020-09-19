@@ -15,9 +15,6 @@ def encode(bx,by,bdir,padx,cmd):
         print('Out of Bounds', result,  bx, by, bdir, padx, cmd)
     return int(result)
 
-#Q = np.zeros([131072])
-
-#episode = []
 icount = 0
 direction = np.array([[0,1],[2,3]])
     
@@ -28,36 +25,12 @@ env = setup();
 pygame.init()
 fout = open('Logfile.txt','w')
 
-#Initializing the display window
-#size = (300,210)
 screen = pygame.display.set_mode(env.size)
 pygame.display.set_caption('Q Learning')
 
-#Starting coordinates of the paddle
-#rect_x = int(np.random.randint(0,285)/15)*15
-#rect_y = 195
 print('x ' + str(env.rect_x) + 'y '+ str(env.rect_y))
 
-#initial speed of the paddle
-#rect_change_x = 0
-#rect_change_y = 0
-
-#initial position of the ball
-#ball_x = int(np.random.randint(0,285)/15)*15 #0
-#ball_y = 0
-print('x ' + str(env.ball_x) + 'y '+ str(env.ball_y))
-#speed of the ball
-#ball_change_x = 15
-#ball_change_y = 15
-
-# Define ball size
-#ball_size_x = 15
-#ball_size_y = 15
-
-#score = 0
-#numberofupdates = 0
-
-#draws the paddle. Also restricts its movement between the edges
+#Draws the paddle. Also restricts its movement between the edges
 #of the window.
 def drawrect(screen,x,y):
     if x <= 0:
