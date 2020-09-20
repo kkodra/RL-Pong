@@ -30,30 +30,6 @@ def drawrect(screen,x,y):
     if x >= 210:
         x = 210    
     pygame.draw.rect(screen,GREEN,[x,y,90,15])
-    
-# Read number of episodes and wins and plot statistics
-def stats(file_name):
-    file = open(file_name, 'r')
-    episodes = []
-    wins = []
-    
-    for line in file.readlines():
-        fname = line.rstrip().split(',') #using rstrip to remove the \n
-        episodes.append(int(fname[0]))
-        wins.append(int(fname[1]))
-    
-    res = [i / j for i, j in zip(wins[1:], episodes[1:])]
-    plt.figure()
-    plt.plot(episodes,wins,'o')
-    plt.xlabel('Number of Episodes')
-    plt.ylabel('Number of Wins')
-    plt.grid()
-    
-    plt.figure()
-    plt.plot(episodes[1:],res)
-    plt.xlabel('Number of Episodes')
-    plt.ylabel('Accuracy [%]')
-    plt.grid()
    
 #game's main loop    
 done = False
@@ -202,4 +178,4 @@ while not done:
 
 pygame.quit()  
 file.close()    
-stats('stats.txt')  
+env.stats('stats.txt')  

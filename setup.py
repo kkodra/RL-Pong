@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 class setup():
     def __init__(self):
@@ -33,3 +34,27 @@ class setup():
         
         self.score = 0
         self.numberofupdates = 0
+        
+    # Read number of episodes and wins and plot statistics
+    def stats(self,file_name):
+        file = open(file_name, 'r')
+        episodes = []
+        wins = []
+        
+        for line in file.readlines():
+            fname = line.rstrip().split(',') #using rstrip to remove the \n
+            episodes.append(int(fname[0]))
+            wins.append(int(fname[1]))
+        
+        res = [i / j for i, j in zip(wins[1:], episodes[1:])]
+        plt.figure()
+        plt.plot(episodes,wins,'o')
+        plt.xlabel('Number of Episodes')
+        plt.ylabel('Number of Wins')
+        plt.grid()
+        
+        plt.figure()
+        plt.plot(episodes[1:],res)
+        plt.xlabel('Number of Episodes')
+        plt.ylabel('Accuracy [%]')
+        plt.grid()
