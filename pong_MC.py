@@ -2,7 +2,6 @@
 import numpy as np
 import pygame 
 from setup import setup
-import matplotlib.pyplot as plt
 
 # Color definition for printing
 R  = '\033[1;31m' # red
