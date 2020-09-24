@@ -165,6 +165,9 @@ while not done:
     pygame.draw.rect(screen,WHITE,[env.ball_x,env.ball_y,15,15])
     
     drawrect(screen,env.rect_x,env.rect_y)
+    
+    print('Number of games: ',num_games)
+    print('Number of wins: ',num_wins)
         
    #score board
     font= pygame.font.SysFont('Times', 22,  True, False)
@@ -176,5 +179,6 @@ while not done:
     
 
 pygame.quit()  
-file.close()    
-env.stats('stats.txt')  
+file.close()  
+if num_games > 1000:
+    env.stats('stats.txt')  
