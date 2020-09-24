@@ -19,11 +19,16 @@ icount = 0
 direction = np.array([[0,1],[2,3]])
     
 BLACK = (0,0,0); WHITE = (255,255,255); GREEN = (0,255,0)
+pygame.init()
 
 env = setup();
 
-pygame.init()
-fout = open('Logfile.txt','w')
+num_games = 0
+num_wins  = 0
+
+# Open file to record stats
+file = open('stats.txt','w')
+file.write('%s,%s\n' % (str(0),str(0)))
 
 screen = pygame.display.set_mode(env.size)
 pygame.display.set_caption('Q Learning')
@@ -45,7 +50,6 @@ clock = pygame.time.Clock()
 
 r = np.array([-1, -100, 100])
 
-num_games = 0
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -180,14 +184,19 @@ while not done:
         
         print(env.episode)
         print('WIN!')
-        if num_games%1000 == 0:
-            fout.write("%d, %d\n"%(num_games,env.score))
+        
         num_games+=1
+        num_wins += 1
+        
+        if np.mod(num_games,1000) == 0:
+            file.write('%s,%s\n' % (str(num_games),str(num_wins)))
+        
     
         env.Q[int(env.episode[icount-1])] = r[2] 
 
         icount = 0   
         env.episode = []
+        
     elif env.ball_y>180: 
         env.ball_change_y = env.ball_change_y * -1
             
@@ -195,8 +204,9 @@ while not done:
             env.score = env.score - 1 
         reward = -1
         print('Loss!')
-        if num_games%1000 == 0:
-            fout.write("%d, %d\n"% (num_games,env.score))
+        if np.mod(num_games,1000) == 0:
+            file.write('%s,%s\n' % (str(num_games),str(num_wins)))
+            
         num_games+=1
         # We lost, update the Q 
         env.numberofupdates = env.numberofupdates + 1 
@@ -214,6 +224,7 @@ while not done:
         break
         
     print('Number of games: ',num_games)
+    print('Number of wins: ',num_wins)
    #score board
     font= pygame.font.SysFont('Times', 22,  True, False)
     text = font.render("Score : " + str(env.score), True, WHITE)
@@ -223,4 +234,6 @@ while not done:
     clock.tick(1500)
     
 pygame.quit()    
-
+file.close()    
+if num_games > 1000:
+    env.stats('stats.txt')  
